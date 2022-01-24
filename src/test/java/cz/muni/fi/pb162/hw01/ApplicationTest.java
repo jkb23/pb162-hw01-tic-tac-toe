@@ -12,24 +12,24 @@ import static com.github.stefanbirkner.systemlambda.SystemLambda.withTextFromSys
 public class ApplicationTest {
     @Test()
     @DisplayName("3x3 board ends on full")
-    void  basic3x3scenarioFullBoard() throws Exception {
-        var moves = new String[] { "0 0", "0 1", "0 2", "1 0",  "1 1", "1 2", "2 1", "2 0", "2 2" };
+    void basic3x3scenarioFullBoard() throws Exception {
+        var moves = new String[]{ "0 0", "0 1", "0 2", "1 0", "1 1", "1 2", "2 1", "2 0", "2 2" };
         var args = new String[]{};
         var output = playGame(args, moves);
 
-        SoftAssertions.assertSoftly( softly -> {
+        SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(output).contains(Messages.GAME_OVER.formatted(9));
         });
     }
 
     @Test()
     @DisplayName("4x4 board where x wins with 3 in row")
-    void  basic4x4scenarioFirstWins() throws Exception {
-        var moves = new String[] { "0 0", "0 1", "1 1", "1 0",  "1 2", "0 2", "1 3" };
-        var args = new String[]{"-s", "4", "-w", "3", "-h", "1"};
+    void basic4x4scenarioFirstWins() throws Exception {
+        var moves = new String[]{ "0 0", "0 1", "1 1", "1 0", "1 2", "0 2", "1 3" };
+        var args = new String[]{ "-s", "4", "-w", "3", "-h", "1" };
         var output = playGame(args, moves);
 
-        SoftAssertions.assertSoftly( softly -> {
+        SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(output).contains(Messages.GAME_OVER.formatted(7));
             softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("x"));
         });
@@ -37,12 +37,12 @@ public class ApplicationTest {
 
     @Test()
     @DisplayName("4x4 board where @ wins with 3 in column")
-    void  basic4x4scenarioSecondWins() throws Exception {
-        var moves = new String[] { "0 1", "1 1", "1 0", "2 1",  "0 3", "3 1" };
-        var args = new String[]{"-s", "4", "-w", "3", "-h", "1", "-p", "#@"};
+    void basic4x4scenarioSecondWins() throws Exception {
+        var moves = new String[]{ "0 1", "1 1", "1 0", "2 1", "0 3", "3 1" };
+        var args = new String[]{ "-s", "4", "-w", "3", "-h", "1", "-p", "#@" };
         var output = playGame(args, moves);
 
-        SoftAssertions.assertSoftly( softly -> {
+        SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(output).contains(Messages.GAME_OVER.formatted(6));
             softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("@"));
         });
@@ -50,12 +50,12 @@ public class ApplicationTest {
 
     @Test()
     @DisplayName("3x3 board where * wins with 3 in row")
-    void  basic3x3scenarioFirstWins() throws Exception {
-        var moves = new String[] { "0 0", "1 0", "0 1", "1 1", "0 2" };
-        var args = new String[]{"-s", "3", "-w", "3", "-p", "*#"};
+    void basic3x3scenarioFirstWins() throws Exception {
+        var moves = new String[]{ "0 0", "1 0", "0 1", "1 1", "0 2" };
+        var args = new String[]{ "-s", "3", "-w", "3", "-p", "*#" };
         var output = playGame(args, moves);
 
-        SoftAssertions.assertSoftly( softly -> {
+        SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(output).contains(Messages.GAME_OVER.formatted(5));
             softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("*"));
         });
@@ -63,12 +63,12 @@ public class ApplicationTest {
 
     @Test()
     @DisplayName("3x3 board where o wins with 3 in column")
-    void  basic3x3scenarioSecondWins() throws Exception {
-        var moves = new String[] { "0 0", "0 1", "1 0", "1 1", "0 2", "2 1"};
-        var args = new String[]{"-s", "3", "-w", "3"};
+    void basic3x3scenarioSecondWins() throws Exception {
+        var moves = new String[]{ "0 0", "0 1", "1 0", "1 1", "0 2", "2 1" };
+        var args = new String[]{ "-s", "3", "-w", "3" };
         var output = playGame(args, moves);
 
-        SoftAssertions.assertSoftly( softly -> {
+        SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(output).contains(Messages.GAME_OVER.formatted(6));
             softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("o"));
         });
@@ -77,11 +77,11 @@ public class ApplicationTest {
     @Test
     @DisplayName("Game quit right after start")
     void quitGameAfterStart() throws Exception {
-        var moves = new String[] {":q"};
-        var args = new String[] {};
+        var moves = new String[]{ ":q" };
+        var args = new String[]{};
         var output = playGame(args, moves);
 
-        SoftAssertions.assertSoftly( softly -> {
+        SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(output).contains(Messages.GAME_OVER.formatted(0));
         });
     }
@@ -89,25 +89,25 @@ public class ApplicationTest {
     @Test
     @DisplayName("Game quit right after 3 turns")
     void quitGameAfterTurns() throws Exception {
-        var moves = new String[] {"1 1", "2 1", "0 2", ":q"};
-        var args = new String[] {};
+        var moves = new String[]{ "1 1", "2 1", "0 2", ":q" };
+        var args = new String[]{};
         var output = playGame(args, moves);
 
-        SoftAssertions.assertSoftly( softly -> {
+        SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(output).contains(Messages.GAME_OVER.formatted(3));
         });
     }
 
     @Test()
-    @DisplayName("3x3 board where x wins with 3 in row after rewinding")
-    void  timeTravel3x3scenarioFirstWinsAfterRewind() throws Exception {
-        var moves = new String[] { "0 0", "1 1", "0 1", "1 2", "1 0", "2 0", "<<2", };
-        var args = new String[]{"-s", "3", "-w", "3"};
+    @DisplayName("3x3 board where o wins with 3 in row after rewinding")
+    void timeTravel3x3scenarioSecondWinsAfterRewind() throws Exception {
+        var moves = new String[]{ "0 0", "1 1", "0 1", "1 2", "1 0", "2 0", "<<2", "1 0" };
+        var args = new String[]{ "-s", "3", "-w", "3", "-h", "3" };
         var output = playGame(args, moves);
 
-        SoftAssertions.assertSoftly( softly -> {
+        SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(output).contains(Messages.GAME_OVER.formatted(5));
-            softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("*"));
+            softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("o"));
         });
     }
 
