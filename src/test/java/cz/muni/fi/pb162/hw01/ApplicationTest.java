@@ -74,6 +74,19 @@ public class ApplicationTest {
         });
     }
 
+    @Test()
+    @DisplayName("3x3 board where x wins with 3 on diagonal")
+    void basic3x3scenarioSecondWinsDiagonal() throws Exception {
+        var moves = new String[]{ "0 0", "0 2", "1 0", "1 1", "2 1", "2 0"};
+        var args = new String[]{ "-s", "3", "-w", "3", "-p", "ox" };
+        var output = playGame(args, moves);
+
+        SoftAssertions.assertSoftly(softly -> {
+            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(6));
+            softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("x"));
+        });
+    }
+
     @Test
     @DisplayName("Game quit right after start")
     void quitGameAfterStart() throws Exception {
