@@ -31,7 +31,7 @@ Application should support the following
 ### User interface
 The example bellow should give a good description how a single turn of the game should be presented.
 
-```bash
+```
 Turn: 1
 -------
 | | | |
@@ -183,7 +183,7 @@ You can consult your seminar teacher to help you set the ```checkstyle.fail``` p
 ### Running the application
 The build descriptor is configured to produce a single runnable jar file located at `target/application.jar`. The application can be run using the following command
 
-```bash
+```
 # Start a game on 3x3 board, requiring 3 symbols in a line to win and the ability to rewind 2 turns back
 $ java -jar application.jar -s 3 -w 3 --players xo -h 3                                      
 Turn: 1
