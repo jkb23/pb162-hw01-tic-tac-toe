@@ -101,7 +101,7 @@ public class ApplicationTest {
 
     @Test
     @DisplayName("Game quit right after 3 turns")
-    void quitGameAfterTurns() throws Exception {
+    void basicQuitAfterTurns() throws Exception {
         var moves = new String[]{ "1 1", "2 1", "0 2", ":q" };
         var args = new String[]{};
         var output = playGame(args, moves);
@@ -111,15 +111,27 @@ public class ApplicationTest {
         });
     }
 
+    @Test
+    @DisplayName("Game quit right after 3 turns")
+    void rewindQuitAfterTurns() throws Exception {
+        var moves = new String[]{ "1 1", "2 1", "0 2", "<<2", ":q" };
+        var args = new String[]{"-h", "4"};
+        var output = playGame(args, moves);
+
+        SoftAssertions.assertSoftly(softly -> {
+            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(4));
+        });
+    }
+
     @Test()
     @DisplayName("3x3 board where o wins with 3 in row after rewinding")
-    void timeTravel3x3scenarioSecondWinsAfterRewind() throws Exception {
+    void rewind3x3scenarioSecondWinsAfterRewind() throws Exception {
         var moves = new String[]{ "0 0", "1 1", "0 1", "1 2", "1 0", "2 0", "<<2", "1 0" };
         var args = new String[]{ "-s", "3", "-w", "3", "-h", "3" };
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(5));
+            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(8));
             softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("o"));
         });
     }

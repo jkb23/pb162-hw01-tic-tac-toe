@@ -20,13 +20,13 @@ Then game ends when either of the following happens:
 ### Command Line Option
 Application should support the following
 
-| Name         | Short | Long      | Default | Description                                       | Conditions       |
-|--------------|-------|-----------|---------|---------------------------------------------------|------------------|
-| Size         | -s    | --size    | 3       | Size of the board (NxN)                           | > 3              |
-| Win Size     | -w    | --win     | 3       | Number of symbols in line required  to win        | > 3              |
-| History Size | -h    | --history | 1       | Number of turns the player is able to rewind back | 0 > h < size     |
-| Players      | -p    | --players | xo      | Symbols and order of players                      | len(players) > 1 |
-| Help         |       | --help    | false   | Prints usage                                      |                  |
+| Name         | Short | Long      | Default | Description                                       | Conditions        |
+|--------------|-------|-----------|---------|---------------------------------------------------|-------------------|
+| Size         | -s    | --size    | 3       | Size of the board (NxN)                           | > 3               |
+| Win Size     | -w    | --win     | 3       | Number of symbols in line required  to win        | 3 < w <= size     |
+| History Size | -h    | --history | 1       | Number of turns the player is able to rewind back | 0 > h < size*size |
+| Players      | -p    | --players | xo      | Symbols and order of players                      | len(players) > 1  |
+| Help         |       | --help    | false   | Prints usage                                      |                   |
 
 ### User interface
 The example bellow should give a good description how a single turn of the game should be presented.
@@ -95,7 +95,7 @@ The game will respond to the following commands during a gameplay
 If any other command is entered (or the command is not valid), the current turn is repeated.  
 
 ### Play command
-Puts the symbol associated with the current player at the cell with the entered coordinates. 
+Puts the symbol associated with the current player at the cell with the entered coordinates.
 The following conditions apply for this command
 
 - Two space-delimited numbers
@@ -104,15 +104,17 @@ The following conditions apply for this command
   - otherwise ``Messages.ERROR_ILLEGAL_PLAY`` is printed to stdout
 - Coordinates are referencing an empty cell
   - otherwise ``Messages.ERROR_ILLEGAL_PLAY`` is printed to stdout
+- After the command is executed successfully, next turns starts with the next player
 
 ### Rewind command
-Allows the current user to rewind ``N`` turns back.
+Allows the current user to rewind back last ``N`` successful play commands (essentially removes last ``N`` placed symbol).
 The following conditions apply for this command
 
 - Format is ``<<N`` where N is a number
   - otherwise ``Messages.ERROR_INVALID_COMMAND`` is printed to stdout
 - N must be in ``<0, h)`` where ``h`` is the size of history
   - otherwise ``Messages.ERROR_REWIND`` is printed to stdout
+- After the command is executed successfully, next turns starts with the next player
 
 Be aware that this command is tight to the history size specified when starting the game.
 
@@ -120,7 +122,13 @@ Be aware that this command is tight to the history size specified when starting 
 - For games with a history size of 1 it is not possible to rewind at all
 
 ### Quit command
-Quits the game.
+This commands stops and exits the game
+The following conditions apply fort this command
+
+- Format is ``:q``
+- Execution of this command does not count as a turn 
+  - See the example at the end of this README 
+- After the command is executed successfully the program exits
 
 ### Evaluation
 Beside functional correctness this assignment is focused on the object-oriented design.
@@ -222,24 +230,24 @@ Turn: 4
 Enter your turn (o): <<2
 ===
 
-Turn: 2
+Turn: 5
 -------
 |x| | |
 -------
-| | |o|
+| | | |
 -------
-|x| | |
+| | | |
 -------
-Enter your turn (o): :q
+Enter your turn (x): :q
 ===
 
-Game over after 1 turns
+Game over after 4 turns
 -------
 |x| | |
 -------
-| | |o|
+| | | |
 -------
-|x| | |
+| | | |
 -------
 ```
 
