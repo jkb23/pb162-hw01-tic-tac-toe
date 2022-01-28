@@ -10,7 +10,7 @@ import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemErrAnd
 import static com.github.stefanbirkner.systemlambda.SystemLambda.withTextFromSystemIn;
 
 public class ApplicationTest {
-    @Test()
+    @Test
     @DisplayName("3x3 board ends on full")
     void basic3x3scenarioFullBoard() throws Exception {
         var moves = new String[]{ "0 0", "0 1", "0 2", "1 0", "1 1", "1 2", "2 1", "2 0", "2 2" };
@@ -22,7 +22,7 @@ public class ApplicationTest {
         });
     }
 
-    @Test()
+    @Test
     @DisplayName("4x4 board where x wins with 3 in row")
     void basic4x4scenarioFirstWins() throws Exception {
         var moves = new String[]{ "0 0", "0 1", "1 1", "1 0", "1 2", "0 2", "1 3" };
@@ -35,7 +35,7 @@ public class ApplicationTest {
         });
     }
 
-    @Test()
+    @Test
     @DisplayName("4x4 board where @ wins with 3 in column")
     void basic4x4scenarioSecondWins() throws Exception {
         var moves = new String[]{ "0 1", "1 1", "1 0", "2 1", "0 3", "3 1" };
@@ -61,7 +61,7 @@ public class ApplicationTest {
         });
     }
 
-    @Test()
+    @Test
     @DisplayName("3x3 board where o wins with 3 in column")
     void basic3x3scenarioSecondWins() throws Exception {
         var moves = new String[]{ "0 0", "0 1", "1 0", "1 1", "0 2", "2 1" };
@@ -123,7 +123,7 @@ public class ApplicationTest {
         });
     }
 
-    @Test()
+    @Test
     @DisplayName("3x3 board where o wins with 3 in row after rewinding")
     void rewind3x3scenarioSecondWinsAfterRewind() throws Exception {
         var moves = new String[]{ "0 0", "1 1", "0 1", "1 2", "1 0", "2 0", "<<2", "1 0" };
