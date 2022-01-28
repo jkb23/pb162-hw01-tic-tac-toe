@@ -22,7 +22,7 @@ Application should support the following
 
 | Name         | Short | Long      | Default | Description                                       | Conditions        |
 |--------------|-------|-----------|---------|---------------------------------------------------|-------------------|
-| Size         | -s    | --size    | 3       | Size of the board (NxN)                           | > 3               |
+| Size         | -s    | --size    | 3       | Size of the board (NxN)                           | >= 3              |
 | Win Size     | -w    | --win     | 3       | Number of symbols in line required  to win        | 3 < w <= size     |
 | History Size | -h    | --history | 1       | Number of turns the player is able to rewind back | 0 > h < size*size |
 | Players      | -p    | --players | xo      | Symbols and order of players                      | len(players) > 1  |
