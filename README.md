@@ -1,9 +1,9 @@
 Homework assignment no. 1, Tic-Tac-Toe
 ====================================
 
-**Publication date:**  March 20, 2022
+**Publication date:**  March 15, 2022
 
-**Submission deadline:** April 3, 2022
+**Submission deadline:** April 1, 2022
 
 General information
 -------------------
@@ -23,7 +23,7 @@ Application should support the following
 | Name         | Short | Long      | Default | Description                                       | Conditions        |
 |--------------|-------|-----------|---------|---------------------------------------------------|-------------------|
 | Size         | -s    | --size    | 3       | Size of the board (NxN)                           | >= 3              |
-| Win Size     | -w    | --win     | 3       | Number of symbols in line required  to win        | 3 < w <= size     |
+| Win Size     | -w    | --win     | 3       | Number of symbols in line required  to win        | 3 <= w <= size    |
 | History Size | -h    | --history | 1       | Number of turns the player is able to rewind back | 0 > h < size*size |
 | Players      | -p    | --players | xo      | Symbols and order of players                      | len(players) > 1  |
 | Help         |       | --help    | false   | Prints usage                                      |                   |
