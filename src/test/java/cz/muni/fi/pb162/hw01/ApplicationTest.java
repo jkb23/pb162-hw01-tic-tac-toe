@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemErrAndOutNormalized;
 import static com.github.stefanbirkner.systemlambda.SystemLambda.withTextFromSystemIn;
+import static java.lang.String.format;
 
 public class ApplicationTest {
     @Test
@@ -18,7 +19,7 @@ public class ApplicationTest {
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(9));
+            softly.assertThat(output).contains(format(Messages.GAME_OVER, 9));
         });
     }
 
@@ -30,8 +31,8 @@ public class ApplicationTest {
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(7));
-            softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("x"));
+            softly.assertThat(output).contains(format(Messages.GAME_OVER, 7));
+            softly.assertThat(output).contains(format(Messages.GAME_WINNER, "x"));
         });
     }
 
@@ -43,8 +44,8 @@ public class ApplicationTest {
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(6));
-            softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("@"));
+            softly.assertThat(output).contains(format(Messages.GAME_OVER, 6));
+            softly.assertThat(output).contains(format(Messages.GAME_WINNER, "@"));
         });
     }
 
@@ -56,8 +57,8 @@ public class ApplicationTest {
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(5));
-            softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("*"));
+            softly.assertThat(output).contains(format(Messages.GAME_OVER, 5));
+            softly.assertThat(output).contains(format(Messages.GAME_WINNER, "*"));
         });
     }
 
@@ -69,8 +70,8 @@ public class ApplicationTest {
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(6));
-            softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("o"));
+            softly.assertThat(output).contains(format(Messages.GAME_OVER, 6));
+            softly.assertThat(output).contains(format(Messages.GAME_WINNER, "o"));
         });
     }
 
@@ -82,8 +83,8 @@ public class ApplicationTest {
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(6));
-            softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("x"));
+            softly.assertThat(output).contains(format(Messages.GAME_OVER, 6));
+            softly.assertThat(output).contains(format(Messages.GAME_WINNER, "x"));
         });
     }
 
@@ -95,7 +96,7 @@ public class ApplicationTest {
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(0));
+            softly.assertThat(output).contains(format(Messages.GAME_OVER, 0));
         });
     }
 
@@ -107,7 +108,7 @@ public class ApplicationTest {
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(3));
+            softly.assertThat(output).contains(format(Messages.GAME_OVER, 3));
         });
     }
 
@@ -119,7 +120,7 @@ public class ApplicationTest {
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(4));
+            softly.assertThat(output).contains(format(Messages.GAME_OVER, 4));
         });
     }
 
@@ -131,8 +132,8 @@ public class ApplicationTest {
         var output = playGame(args, moves);
 
         SoftAssertions.assertSoftly(softly -> {
-            softly.assertThat(output).contains(Messages.GAME_OVER.formatted(8));
-            softly.assertThat(output).contains(Messages.GAME_WINNER.formatted("o"));
+            softly.assertThat(output).contains(format(Messages.GAME_OVER, 8));
+            softly.assertThat(output).contains(format(Messages.GAME_WINNER, "o"));
         });
     }
 
