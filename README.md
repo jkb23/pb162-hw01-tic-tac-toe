@@ -5,6 +5,11 @@ Homework assignment no. 1, Tic-Tac-Toe
 
 **Submission deadline:** April 1, 2022
 
+## CHANGELOG
+
+* 15.3.2022: Fixed JDK 11 compatibility issue with ``String#formatted``
+* 16.3.2022: Fixed Test on Windows caused by unnecessary stdout normalization  
+
 General information
 -------------------
 The goal of this homework is to implement the game of [tic-tac-toe](https://en.wikipedia.org/wiki/Tic-tac-toe)  
