@@ -6,7 +6,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemErrAndOutNormalized;
+import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemErrAndOut;
 import static com.github.stefanbirkner.systemlambda.SystemLambda.withTextFromSystemIn;
 import static java.lang.String.format;
 
@@ -138,7 +138,7 @@ public class ApplicationTest {
     }
 
     private String playGame(String[] args, String[] moves) throws Exception {
-        return tapSystemErrAndOutNormalized(() -> withTextFromSystemIn(moves).execute(() -> {
+        return tapSystemErrAndOut(() -> withTextFromSystemIn(moves).execute(() -> {
             Application.main(args);
         }));
     }
