@@ -1,0 +1,8 @@
+image: maven:3.6.3-jdk-11
+
+clean_install:
+  stage: build
+  tags:
+    - shared-fi
+  script:
+    - mvn clean install

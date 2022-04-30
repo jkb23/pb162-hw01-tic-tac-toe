@@ -1,7 +1,7 @@
 package cz.muni.fi.pb162.hw01.impl;
 
 /**
- * String formatter for {@link Board}
+ * String formatter for {@link ArrayBoard}
  */
 public interface BoardFormatter {
 
